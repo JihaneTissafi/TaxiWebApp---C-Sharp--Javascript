@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBModelAlloTaxi.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DBModelAlloTaxiStoreContainer">
+    <EntitySet Name="Chauffeurs" EntityType="DBModelAlloTaxi.Store.Chauffeurs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Clients" EntityType="DBModelAlloTaxi.Store.Clients" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ClientChauffeur" Association="DBModelAlloTaxi.Store.ClientChauffeur">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Chauffeur" EntitySet="Chauffeurs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Chauffeurs">
+    <Key>
+      <PropertyRef Name="ChauffeurId" />
+    </Key>
+    <Property Name="ChauffeurId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Client_ClientId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="ClientId" />
+    </Key>
+    <Property Name="ClientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <Association Name="ClientChauffeur">
+    <End Role="Client" Type="DBModelAlloTaxi.Store.Clients" Multiplicity="1" />
+    <End Role="Chauffeur" Type="DBModelAlloTaxi.Store.Chauffeurs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ClientId" />
+      </Principal>
+      <Dependent Role="Chauffeur">
+        <PropertyRef Name="Client_ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

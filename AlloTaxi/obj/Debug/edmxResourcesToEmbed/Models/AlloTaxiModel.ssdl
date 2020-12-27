@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AlloTaxiModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AlloTaxiModelStoreContainer">
+    <EntitySet Name="Chauffeurs" EntityType="AlloTaxiModel.Store.Chauffeurs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Clients" EntityType="AlloTaxiModel.Store.Clients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ListTaxis" EntityType="AlloTaxiModel.Store.ListTaxis" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ListTaxiClient" Association="AlloTaxiModel.Store.ListTaxiClient">
+      <End Role="ListTaxi" EntitySet="ListTaxis" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="ListTaxiChauffeur" Association="AlloTaxiModel.Store.ListTaxiChauffeur">
+      <End Role="ListTaxi" EntitySet="ListTaxis" />
+      <End Role="Chauffeur" EntitySet="Chauffeurs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Chauffeurs">
+    <Key>
+      <PropertyRef Name="ChauffeurId" />
+    </Key>
+    <Property Name="ChauffeurId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Numero_Taxi" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Numero_Telephone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ville" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ListTaxi_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="ClientId" />
+    </Key>
+    <Property Name="ClientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Numero_telephone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Ville" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ListTaxi_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ListTaxis">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ChauffeurId" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="ListTaxiClient">
+    <End Role="ListTaxi" Type="AlloTaxiModel.Store.ListTaxis" Multiplicity="1" />
+    <End Role="Client" Type="AlloTaxiModel.Store.Clients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ListTaxi">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="ListTaxi_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ListTaxiChauffeur">
+    <End Role="ListTaxi" Type="AlloTaxiModel.Store.ListTaxis" Multiplicity="1" />
+    <End Role="Chauffeur" Type="AlloTaxiModel.Store.Chauffeurs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ListTaxi">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Chauffeur">
+        <PropertyRef Name="ListTaxi_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

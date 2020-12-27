@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBModelTaxiStoreContainer" CdmEntityContainer="DBModelTaxiContainer">
+    <EntitySetMapping Name="Chauffeurs">
+      <EntityTypeMapping TypeName="IsTypeOf(DBModelTaxi.Chauffeur)">
+        <MappingFragment StoreEntitySet="Chauffeurs">
+          <ScalarProperty Name="ChauffeurId" ColumnName="ChauffeurId" />
+          <ScalarProperty Name="Numero_Taxi" ColumnName="Numero_Taxi" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Numero_Telephone" ColumnName="Numero_Telephone" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="IsTypeOf(DBModelTaxi.Client)">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Numero_Telephone" ColumnName="Numero_Telephone" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ListTaxis">
+      <EntityTypeMapping TypeName="IsTypeOf(DBModelTaxi.ListTaxi)">
+        <MappingFragment StoreEntitySet="ListTaxis">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ListTaxiClient" TypeName="DBModelTaxi.ListTaxiClient" StoreEntitySet="Clients">
+      <EndProperty Name="ListTaxi">
+        <ScalarProperty Name="Id" ColumnName="ListTaxi_Id" />
+      </EndProperty>
+      <EndProperty Name="Client">
+        <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ListTaxiChauffeur" TypeName="DBModelTaxi.ListTaxiChauffeur" StoreEntitySet="Chauffeurs">
+      <EndProperty Name="ListTaxi">
+        <ScalarProperty Name="Id" ColumnName="ListTaxi_Id" />
+      </EndProperty>
+      <EndProperty Name="Chauffeur">
+        <ScalarProperty Name="ChauffeurId" ColumnName="ChauffeurId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

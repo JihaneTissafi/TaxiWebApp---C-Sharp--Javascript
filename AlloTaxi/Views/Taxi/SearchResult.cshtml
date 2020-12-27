@@ -1,0 +1,31 @@
+﻿@model IEnumerable<AlloTaxi.Models.Db.Chauffeur>
+
+@{
+                /**/
+
+                Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<table>
+<tr>
+    <th>Numero De Taxi </th>
+    <th>Ville</th>
+    <th>Numero De Telephone </th>
+   
+</tr>
+
+@foreach (var d in Model)
+{
+    <tr>
+        <td>@d.Numero_Taxi</td>
+        <td>@d.Ville</td>
+        <td>@d.Numero_Telephone</td>
+    </tr>
+}
+
+
+</table>
+

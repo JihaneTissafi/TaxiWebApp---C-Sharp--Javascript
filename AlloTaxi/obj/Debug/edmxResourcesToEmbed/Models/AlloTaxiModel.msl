@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AlloTaxiModelStoreContainer" CdmEntityContainer="AlloTaxiModelContainer">
+    <EntitySetMapping Name="Chauffeurs">
+      <EntityTypeMapping TypeName="IsTypeOf(AlloTaxiModel.Chauffeur)">
+        <MappingFragment StoreEntitySet="Chauffeurs">
+          <ScalarProperty Name="ChauffeurId" ColumnName="ChauffeurId" />
+          <ScalarProperty Name="Numero_Taxi" ColumnName="Numero_Taxi" />
+          <ScalarProperty Name="Numero_Telephone" ColumnName="Numero_Telephone" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="IsTypeOf(AlloTaxiModel.Client)">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Numero_telephone" ColumnName="Numero_telephone" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ListTaxis">
+      <EntityTypeMapping TypeName="IsTypeOf(AlloTaxiModel.ListTaxi)">
+        <MappingFragment StoreEntitySet="ListTaxis">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="ChauffeurId" ColumnName="ChauffeurId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ListTaxiClient" TypeName="AlloTaxiModel.ListTaxiClient" StoreEntitySet="Clients">
+      <EndProperty Name="ListTaxi">
+        <ScalarProperty Name="Id" ColumnName="ListTaxi_Id" />
+      </EndProperty>
+      <EndProperty Name="Client">
+        <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ListTaxiChauffeur" TypeName="AlloTaxiModel.ListTaxiChauffeur" StoreEntitySet="Chauffeurs">
+      <EndProperty Name="ListTaxi">
+        <ScalarProperty Name="Id" ColumnName="ListTaxi_Id" />
+      </EndProperty>
+      <EndProperty Name="Chauffeur">
+        <ScalarProperty Name="ChauffeurId" ColumnName="ChauffeurId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

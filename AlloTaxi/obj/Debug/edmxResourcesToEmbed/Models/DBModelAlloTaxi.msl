@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBModelAlloTaxiStoreContainer" CdmEntityContainer="DBModelAlloTaxiContainer">
+    <EntitySetMapping Name="Chauffeurs">
+      <EntityTypeMapping TypeName="IsTypeOf(DBModelAlloTaxi.Chauffeur)">
+        <MappingFragment StoreEntitySet="Chauffeurs">
+          <ScalarProperty Name="ChauffeurId" ColumnName="ChauffeurId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="IsTypeOf(DBModelAlloTaxi.Client)">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ClientChauffeur" TypeName="DBModelAlloTaxi.ClientChauffeur" StoreEntitySet="Chauffeurs">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="ClientId" ColumnName="Client_ClientId" />
+      </EndProperty>
+      <EndProperty Name="Chauffeur">
+        <ScalarProperty Name="ChauffeurId" ColumnName="ChauffeurId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

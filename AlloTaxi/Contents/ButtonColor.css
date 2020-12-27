@@ -1,0 +1,11 @@
+﻿#BColor {
+    background-color: white;
+    border:none;
+    background: none;
+}
+
+
+#BColor:hover {
+    background-color: #32c8de;
+}
+

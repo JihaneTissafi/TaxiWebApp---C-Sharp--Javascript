@@ -1,0 +1,130 @@
+﻿
+@model AlloTaxi.Models.Db.Chauffeur
+
+
+@{
+    /**/
+
+    /**/
+
+
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="~/Scripts/ScrollDownMenu.js"></script>
+    <meta charset="utf-8">
+    <title>Taxi A Proximit&eacute</title>
+    <!-- Description, Keywords and Author -->
+    <meta name="description" content="Your description">
+    <meta name="keywords" content="Your,Keywords">
+    <meta name="author" content="ResponsiveWebInc">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Styles -->
+    <!-- Bootstrap CSS -->
+    <link href="~/Contents/FichierCSSOne.css" rel="stylesheet">
+    <!-- Font awesome CSS -->
+    <link href="~/Contents/Font-Awesome.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Contents/Style.css" rel="stylesheet">
+    <link href="~/Contents/StyleByMe.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+    <!-- wrapper -->
+    <style>
+        #rounded-Corners {
+            border-radius: 5px;
+            border-style: none;
+            padding: 20px;
+            width: 200px;
+            height: 15px;
+            background-color: rgb(232, 220, 220)
+        }
+
+        .button {
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            padding: 0px;
+        }
+
+        .rounded-Corners-Button {
+            border-radius: 50%;
+            padding: 0px;
+            border-style: dashed;
+            padding: 20px;
+            width: 200px;
+            height: 15px;
+            background-color: rgb(243, 185, 25);
+            Color: gray;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            /* Some browsers will not display the caret when using calc, so we put the fallback first */
+            background-color: rgb(186, 178, 178);
+            border-radius: 5px;
+            border-style: none;
+            padding: 10px;
+            width: 200px;
+            height: 15px;
+            background-color: rgb(232, 220, 220)
+        }
+    </style>
+
+
+    <header>
+        <div class="topnav">
+            @Html.ActionLink("Acceuil", "Index", "Home", null, new { @class = "active" });
+
+            <a href="#news">Nouveaut&eacutes</a>
+            @Html.ActionLink("Contactez nous", "Index", "Contact", null, new { @class = "page-scroll" });
+            @Html.ActionLink("A Propos de Nous", "Index", "About", null, new { @class = "page-scroll" });
+        </div>
+
+        <div class="tel"><span>Contactez-nous:</span> 736-966-592</div>
+        <div class="taxi-line"></div>
+    </header>
+
+    <div class="Body-back-Ground">
+        <div class="character"><img src="~/Images/taxiDriver.png"></div>
+
+        <div class="sidebar">
+            <div class="order-form">
+
+            </div>
+        </div>
+        <div style="text-align:center; ">
+            <form class="Formulaire-Contact">
+                @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                {
+                    <input type="text" value="Numero de Telephone" id="rounded-Corners"><br><br>
+                    
+                    <div class="Formulaire-Contact">
+                    @Html.DropDownListFor(model => model.Id, new SelectList(Model.CollectionChauffeur, "Id", "Ville"), "select")
+                        </div>
+                   <br> <input value="Chercher Taxi" type="submit" style="border-radius: 5px 25px;" class="button rounded-Corners-Button" />
+                }
+            </form>
+        </div>
+
+    </div>
+
+
+    <script src="~/Scripts/ScrollDownMenu.js"></script>
+</body>
+</html>
+
